@@ -116,8 +116,11 @@ let animPlayer = document.getElementById('turnPlayer');
 let fightdiv = document.getElementById('fightmsg');
 let fightimg = document.getElementById('fightimg');
 
+// Animation ending screen
 let whiteScreen = document.getElementById('altback');
 let koscreen = document.getElementById('koscreen');
+let vsimg = document.getElementById('vs-img');
+let koimg = document.getElementById('ko-img');
 
 /*==============================================================================*/
 /*=============================== FONCTIONS ====================================*/
@@ -836,6 +839,14 @@ function restart() {
     auraP2.style.display = "none";
     perso1.src = "images/Spriteperso1.gif";
     perso2.src = "images/Spriteperso2.gif";
+    vsimg.style.display = "block";
+    koimg.src = "Images/VS_KO.gif";
+    koimg.style.opacity = 1;
+    koimg.style.display = "none";
+    koimg.style.heigt = "112px";
+    koimg.style.width = "148px";
+    koimg.style.top = "2%";
+    koimg.style.left = "45.2%";
 
     // Reset des variables de jeu
     triesP1 = [];
@@ -1228,6 +1239,50 @@ function laserfinishP1() {
     let laserSound = new Audio('Son/SFX_laser.mp3');
     laserSound.volume = 0.2;
 
+    // ANIMATION DU KO
+
+    let koTop = 2;
+    let koLeft = 45.2;
+    let koHeight = 112;
+    let koWidth = 148;
+    let koOpacity = 1;
+    setTimeout(() => {
+        vsimg.style.display = "none";
+        koimg.style.display = "block";
+
+    }, 1500);
+    for (let time = 1500; time <= 2500; time += 15) {
+        setTimeout(() => {
+            koimg.style.top = koTop + "%";
+            koimg.style.left = koLeft + "%";
+            koimg.style.height = koHeight + "px";
+            koimg.style.width = koWidth + "px";
+            koTop += 0.2;
+            koLeft -= 0.05;
+            koHeight += 3;
+            koWidth += 2.24;
+        }, time);
+    }
+    setTimeout(() => {
+        koimg.src = "Images/VS_KOframe4.png";
+    }, 2400);
+
+    for (let time = 3000; time <= 4000; time += 15) {
+        setTimeout(() => {
+            koimg.style.opacity = koOpacity;
+            koimg.style.top = koTop + "%";
+            koimg.style.height = koHeight + "px";
+            koimg.style.width = koWidth + "px";
+            koimg.style.left = koLeft + "%";
+            koTop -= 4.5;
+            koLeft -= 3.2;
+            koHeight += 180;
+            koWidth += 120;
+            koOpacity -= 0.05;
+        }, time);
+    }
+
+    // ANIMATION LASER ET WHITESCREEN
     perso1.src = "Images/Attackperso1_0.png";
     setTimeout(() => {
         perso1.src = "Images/Attackperso1_1.png";
@@ -1267,7 +1322,6 @@ function laserfinishP1() {
         }, time)
     }
 
-
     for (let time = 1300; time < 3000; time += 15) {
         setTimeout(() => {
             whiteScreen.style.opacity = opacity;
@@ -1278,9 +1332,6 @@ function laserfinishP1() {
             }
             if (blinky % 4 == 1) {
                 roundP1.style.display = "block";
-            }
-            if (time > 1500) {
-                koscreen.style.display = "block";
             }
         }, time)
     }
@@ -1303,7 +1354,6 @@ function laserfinishP1() {
                 roundP1.style.display = "block";
             }
             if (time >= 4000) {
-                koscreen.style.display = "none";
                 victory(1);
             }
         }, time)
@@ -1335,6 +1385,50 @@ function laserfinishP2() {
     let laserSound = new Audio('Son/SFX_laser.mp3');
     laserSound.volume = 0.2;
 
+    // ANIMATION DU KO
+
+    let koTop = 2;
+    let koLeft = 45.2;
+    let koHeight = 112;
+    let koWidth = 148;
+    let koOpacity = 1;
+    setTimeout(() => {
+        vsimg.style.display = "none";
+        koimg.style.display = "block";
+
+    }, 1500);
+    for (let time = 1500; time <= 2500; time += 15) {
+        setTimeout(() => {
+            koimg.style.top = koTop + "%";
+            koimg.style.left = koLeft + "%";
+            koimg.style.height = koHeight + "px";
+            koimg.style.width = koWidth + "px";
+            koTop += 0.2;
+            koLeft -= 0.05;
+            koHeight += 3;
+            koWidth += 2.24;
+        }, time);
+    }
+    setTimeout(() => {
+        koimg.src = "Images/VS_KOframe4.png";
+    }, 2400);
+
+    for (let time = 3000; time <= 4000; time += 15) {
+        setTimeout(() => {
+            koimg.style.opacity = koOpacity;
+            koimg.style.top = koTop + "%";
+            koimg.style.height = koHeight + "px";
+            koimg.style.width = koWidth + "px";
+            koimg.style.left = koLeft + "%";
+            koTop -= 4.5;
+            koLeft -= 3.2;
+            koHeight += 180;
+            koWidth += 120;
+            koOpacity -= 0.05;
+        }, time);
+    }
+
+    // ANIMATION LASER ET WHITESCREEN
     perso2.src = "Images/Attackperso2_0.png";
     setTimeout(() => {
         perso2.src = "Images/Attackperso2_1.png";
@@ -1385,9 +1479,6 @@ function laserfinishP2() {
             if (blinky % 4 == 1) {
                 roundP2.style.display = "block";
             }
-            if (time > 1500) {
-                koscreen.style.display = "block";
-            }
         }, time)
     }
 
@@ -1409,7 +1500,7 @@ function laserfinishP2() {
                 roundP2.style.display = "block";
             }
             if (time >= 4000) {
-                koscreen.style.display = "none";
+                koimg.style.display = "none";
                 victory(2);
             }
         }, time)
