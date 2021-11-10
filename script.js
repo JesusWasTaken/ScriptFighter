@@ -41,6 +41,7 @@ let attack = 0;
 let music;
 let menuMusic = new Audio('Son/Titlescreen_Music.mp3');
 let menuLaunched = false;
+let musicAllowed = true;
 
 /*====================== VARIABLES AFFICHAGE MESSAGE JEU ======================*/
 
@@ -126,9 +127,22 @@ let koimg = document.getElementById('ko-img');
 /*=============================== FONCTIONS ====================================*/
 /*==============================================================================*/
 
+// Fonction du bouton music ON / OFF
+function musicAllow() {
+    if(musicAllowed) {
+        menuMusic.pause();
+        musicAllowed = false;
+        menuLaunched = false;
+    }
+    else {
+        musicAllowed = true;
+    }
+}
+
 // Fonction de lancement de la musique menu
 function pressStart() {
-    if (menuLaunched == false) {
+    if(musicAllowed) {
+        if (menuLaunched == false) {
         menuMusic.volume = 0.1;
         if (typeof menuMusic.loop == 'boolean') {
             menuMusic.loop = true;
@@ -141,6 +155,7 @@ function pressStart() {
         }
         menuMusic.play();
         menuLaunched = true;
+        }
     }
 }
 
@@ -303,16 +318,18 @@ function launchGame() {
     menuMusic.pause();
     menuMusic.currentTime = 0;
     music.volume = 0.1;
-    if (typeof music.loop == 'boolean') {
+    if (musicAllowed) {
+        if (typeof music.loop == 'boolean') {
         music.loop = true;
-    }
-    else {
-        music.addEventListener('ended', function () {
-            this.currentTime = 0;
-            this.play();
-        }, false);
-    }
-    music.play();
+        }
+        else {
+            music.addEventListener('ended', function () {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+        }
+        music.play();
+       }
 }
 
 // fonction pour afficher le stage et sa musique en fonction de l'heure
