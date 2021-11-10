@@ -134,12 +134,12 @@ function musicAllow() {
         menuMusic.pause();
         musicAllowed = false;
         menuLaunched = false;
-        musicButton.innerHTML = "MUSIC : OFF";
+        musicButton.src = "Images/musicOFF.png";
     }
     else {
         musicAllowed = true;
         pressStart();
-        musicButton.innerHTML = "MUSIC : ON";
+        musicButton.src = "Images/musicON.png";
     }
 }
 
