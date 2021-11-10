@@ -50,6 +50,7 @@ let p1checked = document.getElementById('p1checked');
 let p2checked = document.getElementById('p2checked');
 let placeHolderName1 = document.getElementById('player1name');
 let placeHolderName2 = document.getElementById('player2name');
+let musicButton = document.getElementById('musicButton');
 
 // gestion message changement de tour
 let turnMsg = document.getElementById('turnMsg');
@@ -133,10 +134,12 @@ function musicAllow() {
         menuMusic.pause();
         musicAllowed = false;
         menuLaunched = false;
+        musicButton.innerHTML = "MUSIC : OFF";
     }
     else {
         musicAllowed = true;
         pressStart();
+        musicButton.innerHTML = "MUSIC : ON";
     }
 }
 
