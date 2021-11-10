@@ -136,6 +136,7 @@ function musicAllow() {
     }
     else {
         musicAllowed = true;
+        pressStart();
     }
 }
 
