@@ -162,6 +162,18 @@ button:hover {
     align-items: center;
     width:148px;
     height:112px;
+    display:block;
+}
+
+#ko-img {
+    position: absolute;
+    left:45.2%;
+    top: 2%;
+    width:148px;
+    height: 112px;
+    display:none;
+    z-index: 12;
+    opacity:1;
 }
 
 #avatarP1, #avatarP2 {
