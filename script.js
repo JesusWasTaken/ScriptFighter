@@ -104,7 +104,9 @@ let endingText = document.getElementById('endingText');
 let perso1 = document.getElementById('perso1');
 let perso2 = document.getElementById('perso2');
 let auraP1 = document.getElementById('aura1');
+let auraP1sup = document.getElementById('aura1sup');
 let auraP2 = document.getElementById('aura2');
+let auraP2sup = document.getElementById('aura2sup');
 let roundP1 = document.getElementById('roundP1');
 let roundP2 = document.getElementById('roundP2');
 let auraball1 = document.getElementById('auraball1');
@@ -130,35 +132,35 @@ let koimg = document.getElementById('ko-img');
 
 // Fonction du bouton music ON / OFF
 function musicAllow() {
-    if(musicAllowed) {
+    if (musicAllowed) {
         menuMusic.pause();
         musicAllowed = false;
         menuLaunched = false;
-        musicButton.src = "Images/musicOFF.png";
+        musicButton.src = "Images/musicOFF.png"
     }
     else {
         musicAllowed = true;
-        pressStart();
         musicButton.src = "Images/musicON.png";
+        pressStart();
     }
 }
 
 // Fonction de lancement de la musique menu
 function pressStart() {
-    if(musicAllowed) {
+    if (musicAllowed) {
         if (menuLaunched == false) {
-        menuMusic.volume = 0.1;
-        if (typeof menuMusic.loop == 'boolean') {
-            menuMusic.loop = true;
-        }
-        else {
-            menuMusic.addEventListener('ended', function () {
-                this.currentTime = 0;
-                this.play();
-            }, false);
-        }
-        menuMusic.play();
-        menuLaunched = true;
+            menuMusic.volume = 0.1;
+            if (typeof menuMusic.loop == 'boolean') {
+                menuMusic.loop = true;
+            }
+            else {
+                menuMusic.addEventListener('ended', function () {
+                    this.currentTime = 0;
+                    this.play();
+                }, false);
+            }
+            menuMusic.play();
+            menuLaunched = true;
         }
     }
 }
@@ -168,6 +170,7 @@ function pressStart() {
 // Vérification du mot dans l'API
 async function validateAPI(word) {
     const res = await fetch("http://cemotexistetil.lyliya.fr:8888/exist?word=" + word); //Notre api=> http://localhost:3000/exist?word=   http://cemotexistetil.lyliya.fr:8888/exist?word=
+    //const res = await fetch("http://localhost:3000/exist?word=" + word); 
     const forms = await res.json();
     return forms.exist;
 }
@@ -324,7 +327,7 @@ function launchGame() {
     music.volume = 0.1;
     if (musicAllowed) {
         if (typeof music.loop == 'boolean') {
-        music.loop = true;
+            music.loop = true;
         }
         else {
             music.addEventListener('ended', function () {
@@ -333,14 +336,14 @@ function launchGame() {
             }, false);
         }
         music.play();
-       }
+    }
 }
 
 // fonction pour afficher le stage et sa musique en fonction de l'heure
 function checkHours() {
     date = new Date();
     hour = date.getHours();
-    if ((hour >= 10) && (hour <= 18)) {
+    if ((hour >= 9) && (hour <= 18)) {
         music = new Audio('Son/script_Fighter.mp3');
         body.style.backgroundImage = "url('Images/backgroundSandy.png')";
     }
@@ -747,7 +750,6 @@ function nextTurn() {
     anim.className = "anim";
 
     // Reset des autres animations de jeu
-    container.className = "";
     message.className = "";
     message.style.display = "none";
     good.style.display = "none";
@@ -820,7 +822,6 @@ function victory(player) {
     }
     endingTitle.innerHTML = "Victoire de " + winnerName + " !";
     endingText.innerHTML = endingString;
-    container.style.display = "none";
     endingScreen.style.display = "flex";
 }
 
@@ -851,6 +852,7 @@ function restart() {
     healthP2.className = "";
     callLetter.style.display = "none";
     sceneBaston.style.display = "none";
+    header.className = "";
     perso1.style.display = "block";
     perso2.style.display = "block";
     whiteScreen.style.display = "none";
@@ -972,7 +974,6 @@ function celebration(perso) {
     var stringPerso;
     if (perso == perso1) {
         stringPerso = "perso1";
-        console.log("fonction");
     }
     else if (perso == perso2) {
         stringPerso = "perso2";
@@ -992,25 +993,45 @@ function celebration(perso) {
 function animSSJP1() {
     perso1.src = "Images/Attackperso1_0.png";
     let bottomPerso = 35;
-    let bottomAura = 9;
+    let bottomAura = 15;
+    let bottomAuraSup = 9;
+    let opacityAuraSup = 1;
+    let widthAura = 220;
+    let widthLeft = 9;
 
     setTimeout(() => {
         perso1.src = "Images/victoryperso1.png";
-    }, 500);
+    }, 300);
 
-    for (let time = 500; time < 1000; time += 15) {
+    for (let time = 300; time < 800; time += 15) {
         setTimeout(() => {
             perso1.style.bottom = bottomPerso + "%";
             auraP1.style.bottom = bottomAura + "%";
+            auraP1sup.style.bottom = bottomAuraSup + "%";
             bottomPerso += 2.5;
             bottomAura += 2.5;
+            bottomAuraSup += 1.5;
         }, time);
     }
     setTimeout(() => {
         auraP1.style.display = "block";
-    }, 1000);
+        auraP1sup.style.display = "block";
+    }, 800);
 
-    for (let time = 1500; time < 2000; time += 15) {
+    for (let time = 800; time < 1200; time += 15) {
+        setTimeout(() => {
+            auraP1sup.style.width = widthAura + "px";
+            auraP1sup.style.left = widthLeft + "%";
+            auraP1sup.style.bottom = bottomAuraSup + "%";
+            auraP1sup.style.opacity = opacityAuraSup;
+            opacityAuraSup -= 0.1;
+            bottomAuraSup -= 10;
+            widthLeft -= 2.88;
+            widthAura += 128;
+        }, time);
+    }
+
+    for (let time = 1200; time < 1700; time += 15) {
         setTimeout(() => {
             perso1.style.bottom = bottomPerso + "%";
             auraP1.style.bottom = bottomAura + "%";
@@ -1018,43 +1039,83 @@ function animSSJP1() {
             bottomAura -= 2.5;
         }, time);
     }
+
+    setTimeout(() => {
+        perso1.src = "Images/Attackperso1_1.png";
+    }, 1500);
+
+    setTimeout(() => {
+        perso1.src = "Images/Attackperso1_2.png";
+    }, 1900);
+
     setTimeout(() => {
         perso1.src = "Images/Spriteperso1.gif";
-    }, 2000);
+        auraP1sup.style.display = "none";
+    }, 2100);
 }
 
 function animSSJP2() {
     perso2.src = "Images/victoryperso2.png";
     let bottomPerso = 35;
-    let bottomAura = 19;
+    let bottomAura = 28;
+    let bottomAuraSup = 9;
+    let opacityAuraSup = 1;
+    let widthAura = 220;
+    let widthRight = 9;
 
     setTimeout(() => {
         perso2.src = "Images/celebrationperso2.png";
-    }, 500);
+    }, 300);
 
-    for (let time = 500; time < 1000; time += 15) {
+    for (let time = 300; time < 800; time += 15) {
         setTimeout(() => {
             perso2.style.bottom = bottomPerso + "%";
             auraP2.style.bottom = bottomAura + "%";
-            bottomPerso += 2;
-            bottomAura += 2;
+            auraP2sup.style.bottom = bottomAuraSup + "%";
+            bottomPerso += 2.5;
+            bottomAura += 2.5
+            bottomAuraSup += 1.5;
         }, time);
     }
     setTimeout(() => {
         auraP2.style.display = "block";
-    }, 1000);
+        auraP2sup.style.display = "block";
+    }, 800);
 
-    for (let time = 1500; time < 2000; time += 15) {
+    for (let time = 800; time < 1200; time += 15) {
+        setTimeout(() => {
+            auraP2sup.style.width = widthAura + "px";
+            auraP2sup.style.right = widthRight + "%";
+            auraP2sup.style.bottom = bottomAuraSup + "%";
+            auraP2sup.style.opacity = opacityAuraSup;
+            opacityAuraSup -= 0.1;
+            bottomAuraSup -= 10;
+            widthRight -= 2.88;
+            widthAura += 128;
+        }, time);
+    }
+
+    for (let time = 1200; time < 1700; time += 15) {
         setTimeout(() => {
             perso2.style.bottom = bottomPerso + "%";
             auraP2.style.bottom = bottomAura + "%";
-            bottomPerso -= 2;
-            bottomAura -= 2;
+            bottomPerso -= 2.5;
+            bottomAura -= 2.5;
         }, time);
     }
+
+    setTimeout(() => {
+        perso2.src = "Images/Attackperso2_1.png";
+    }, 1500);
+
+    setTimeout(() => {
+        perso2.src = "Images/Attackperso2_2.png";
+    }, 1900);
+
     setTimeout(() => {
         perso2.src = "Images/Spriteperso2.gif";
-    }, 2000);
+        auraP2sup.style.display = "none";
+    }, 2100);
 }
 
 
@@ -1270,7 +1331,6 @@ function laserfinishP1() {
     setTimeout(() => {
         vsimg.style.display = "none";
         koimg.style.display = "block";
-
     }, 1500);
     for (let time = 1500; time <= 2500; time += 15) {
         setTimeout(() => {
@@ -1303,6 +1363,10 @@ function laserfinishP1() {
         }, time);
     }
 
+    setTimeout(() => {
+        container.style.display = "none";
+    }, 4000)
+
     // ANIMATION LASER ET WHITESCREEN
     perso1.src = "Images/Attackperso1_0.png";
     setTimeout(() => {
@@ -1316,6 +1380,7 @@ function laserfinishP1() {
         roundP1.style.display = "block";
         roundP1.style.height = 1 + "%";
         laserSound.play();
+        container.className = "finalShake";
     }, 700);
 
     let height = 1;
@@ -1449,6 +1514,10 @@ function laserfinishP2() {
         }, time);
     }
 
+    setTimeout(() => {
+        container.style.display = "none";
+    }, 4000);
+
     // ANIMATION LASER ET WHITESCREEN
     perso2.src = "Images/Attackperso2_0.png";
     setTimeout(() => {
@@ -1462,6 +1531,7 @@ function laserfinishP2() {
         roundP2.style.display = "block";
         roundP2.style.height = 1 + "%";
         laserSound.play();
+        container.className = "finalShake";
     }, 700);
 
     let height = 1;

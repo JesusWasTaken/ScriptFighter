@@ -10,7 +10,7 @@ html, body {
 body {    
     background-size:cover;
     overflow:hidden;
-    z-index: 3;    
+    z-index: 3;         
 }
 
 /*=================  MENU LANCEMENT JEU ===================== */
@@ -159,7 +159,7 @@ button {
     font-size:35px;
 }
 
-#gameLaunch:hover, #answerSubmit:hover {
+#gameLaunch:hover, #answerSubmit:hover, #replay:hover {
     background-color:rgba(160, 132, 132, 0.295);
     color:aliceblue;
 }
@@ -339,18 +339,38 @@ button {
     width:220px;
     position:absolute;
     left: 9%;
-    bottom: 9%;
+    bottom: 15%;
     display:none;
     z-index:7;
 }
 
+#aura1sup {
+    width:220px;
+    position:absolute;
+    left: 9%;
+    bottom: 9%;
+    display:none;
+    opacity:1;
+    z-index:7;
+}
+
 #aura2 {
-    width:250px;
+    width:270px;
     position:absolute;
     right: 8%;
-    bottom: 19%;
+    bottom: 28%;
     display:none;
     z-index:5;
+}
+
+#aura2sup {
+    width:220px;
+    position:absolute;
+    right: 9%;
+    bottom: 9%;
+    display:none;
+    opacity:1;
+    z-index:7;
 }
 
 #roundP1 {
@@ -604,6 +624,26 @@ button {
     80% { transform: translate(-1px, -1px) rotate(1deg); }
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.finalShake {
+    animation-name: finalShake;
+    animation-duration: .5s;
+    animation-iteration-count: 4;
+}
+
+@keyframes finalShake{
+    0% { transform: translate(10px) }
+    10% { transform: translate(-10px)  }
+    20% { transform: translate(10px) }
+    30% { transform: translate(-10px) }
+    40% { transform: translate(10px) }
+    50% { transform: translate(10px)  }
+    60% { transform: translate(-10px) }
+    70% { transform: translate(10px)  }
+    80% { transform: translate(-10px) }
+    90% { transform: translate(10px) }
+    100% { transform: translate(-10px)  }
 }
 
 .errorEntry {
@@ -1021,7 +1061,7 @@ button {
 #finishDiv {
     position: absolute;
     top:33%;
-    left:18%;
+    width:100vw;
     font-size: 120px;
     letter-spacing: 0.2em;
     color:red;
@@ -1030,6 +1070,7 @@ button {
     animation-duration: 0.12s;
     animation-iteration-count: 7;
     display:none;
+    text-align: center;
 }
 
 #altback {
