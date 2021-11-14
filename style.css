@@ -243,7 +243,7 @@ button {
     z-index: 1;
 }
 
-.name {
+#name1, #name2 {
     margin-top: 8vh;
     color:white;
 }

@@ -309,7 +309,8 @@ function launchGame() {
 function checkHours() {
 
     let body = document.getElementById('body');
-    let name = document.querySelector('.name');
+    let name1 = document.getElementById('name1');
+    let name2 = document.getElementById('name2');
     let slotNameP1 = document.getElementById('nameP1');
 
     date = new Date();
@@ -320,7 +321,8 @@ function checkHours() {
         music = new Audio('Son/script_Fighter.mp3');
         body.style.backgroundImage = "url('Images/backgroundSandy.gif')"; 
         stage = 1;
-        name.style.color = "white";
+        name1.style.color = "white";
+        name2.style.color = "white";
         slotNameP1.className = "lightname";
         blink.style.color = "white";
         lightning = "blink1"; 
@@ -329,7 +331,8 @@ function checkHours() {
         music = new Audio('Son/Stage_2.mp3');
         body.style.backgroundImage = "url('Images/STAGE2.gif')";
         stage = 2;
-        name.style.color = "rgb(96, 173, 148)";
+        name1.style.color = "rgb(96, 173, 148)";
+        name2.style.color = "rgb(96, 173, 148)";
         slotNameP1.className = "lightname2";
         blink.style.color = "rgb(217, 255, 0)";  
         lightning = "blink2";  
