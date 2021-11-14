@@ -13,7 +13,7 @@ Credits : Original graphism and music  by : Sandy WEBERT
 /____  >\___  >__|  |__|   __/|__|    |__|  |__\___  /|___|  /__|  \___  >__|   
      \/     \/         |__|                   /_____/      \/          \/       
 
-Webpage will be deployed soon	  
+This game is officially online at https://jesuswastaken.github.io/ScriptFighter/	  
 
 This game can be played online (recommended) or locally.
 
