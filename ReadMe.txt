@@ -13,7 +13,7 @@ Credits : Original graphism and music  by : Sandy WEBERT
 /____  >\___  >__|  |__|   __/|__|    |__|  |__\___  /|___|  /__|  \___  >__|   
      \/     \/         |__|                   /_____/      \/          \/       
 
-This game is officially online at https://scriptfighter.fr	  
+Webpage will be deployed soon	  
 
 This game can be played online (recommended) or locally.
 
