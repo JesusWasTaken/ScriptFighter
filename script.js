@@ -141,7 +141,7 @@ async function checkStart() {
     // Reset des bordures d'erreurs des inputs
     document.getElementById('player1word').className = "";
     document.getElementById('player2word').className = "";
-    if ((wordP1.value > 0) && (wordP2.value > 0)) {
+    if ((wordP1.value.length > 0) && (wordP2.value.length > 0)) {
         if ((p1checked.checked) && (p2checked.checked)) {
 
             // Mise en majuscules des mots joueurs
@@ -201,10 +201,10 @@ async function checkStart() {
             }
         }
     }
-    if (wordP1.value < 1) {
+    if (wordP1.value.length < 1) {
         wordP1.className = "formError";
     }
-    if (wordP2.value < 1) {
+    if (wordP2.value.length < 1) {
         wordP2.className = "formError";
     }
 
